@@ -1,0 +1,39 @@
+{
+    "name": "Codedark",
+    "groups": {
+        "information:additional":     { "fg": "codedark:frontgray", "bg": "codedark:darkdarkdark", "attrs": [] },
+        "information:regular":        { "fg": "codedark:front", "bg": "codedark:darkdark", "attrs": [] },
+        "information:highlighted":    { "fg": "codedark:lightblue", "bg": "codedark:darkdark", "attrs": ["bold"] },
+        "information:priority":       { "fg": "codedark:front", "bg": "codedark:blue", "attrs": ["bold"] },
+
+        "critical:failure":           { "fg": "codedark:front", "bg": "codedark:red", "attrs": []},
+        "critical:success":           { "fg": "codedark:front", "bg": "codedark:green", "attrs": []},
+
+        "warning:regular":            { "fg": "codedark:red", "bg": "codedark:darkdark", "attrs": [] },
+
+        "background":                 { "fg": "codedark:frontgray", "bg": "codedark:back", "attrs": [] },
+        "background:divider":         { "fg": "codedark:front", "bg": "codedark:darkdark", "attrs": [] },
+
+        "hostname":                   "information:priority",
+        "user":                       "information:priority",
+        "virtualenv":                 { "fg": "codedark:front", "bg": "codedark:darkdark", "attrs": [] },
+
+        "branch":                     { "fg": "codedark:front", "bg": "codedark:green", "attrs": [] },
+        "branch_dirty":               { "fg": "codedark:darkdark", "bg": "codedark:yellow", "attrs": [] },
+        "branch_clean":               { "fg": "codedark:front", "bg": "codedark:green", "attrs": [] },
+
+        "cwd":                        "information:regular",
+        "cwd:current_folder":         "information:highlighted",
+        "cwd:divider":                "information:regular",
+
+        "attached_clients":           { "fg": "codedark:frontgray", "bg": "codedark:green", "attrs": [] },
+        "date":                       { "fg": "codedark:frontgray", "bg": "codedark:green", "attrs": [] },
+        "time":                       { "fg": "codedark:frontgray", "bg": "codedark:green", "attrs": [] },
+        "time:divider":               { "fg": "codedark:frontgray", "bg": "codedark:green", "attrs": [] },
+
+        "system_load_gradient":       { "fg": "green_yellow_orange_red", "bg": "solarized:base03", "attrs": [] },
+        "system_load_good":           { "fg": "codedark:front", "bg": "codedark:blue", "attrs": [] },
+        "system_load_bad":            { "fg": "codedark:darkdark", "bg": "codedark:yellow", "attrs": [] },
+        "system_load_ugly":           { "fg": "codedark:front", "bg": "codedark:red", "attrs": [] }
+    }
+}

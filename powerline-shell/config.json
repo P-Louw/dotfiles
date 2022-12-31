@@ -1,7 +1,7 @@
 {
   "segments": [
-    "newline",
     "virtual_env",
+    "username",
     "hostname",
     "ssh",
     "cwd",
@@ -13,6 +13,15 @@
   ],
   "mode": "patched",
   "cwd": {
-    "max_depth": 2
-  }
+      "max_depth": 2,
+      "max_dir_size": 15,
+      "full_cwd": true
+  },
+  "hostname": {
+      "colorize": true
+  },
+  "vcs": {
+      "show_symbol": true
+  },
+  "theme": "gruvbox"
 }

@@ -1,0 +1,18 @@
+{
+	"colors": {
+        "codedark:front": [15, "ffffff"],
+        "codedark:frontgray": [188, "d4d4d4"],
+        "codedark:back": [234, "1e1e1e"],
+        "codedark:selection": [24, "264f78"],
+        "codedark:blue": [32, "0a7aca"],
+        "codedark:lightblue": [75, "5cb6f8"],
+        "codedark:yellow": [214, "ffaf00"],
+        "codedark:red": [203, "f44747"],
+        "codedark:darkdarkdark": [235, "262626"],
+        "codedark:darkdark": [236, "303030"],
+        "codedark:dark": [237, "3c3c3c"],
+        "codedark:green": [2, "6a9955"]
+	},
+	"gradients": {
+	}
+}
