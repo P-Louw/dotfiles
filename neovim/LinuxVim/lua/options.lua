@@ -20,7 +20,7 @@ o.undofile = false
 
 -- [[ Drawing/syntax ]]
 o.wildmenu = true
-o.lazyredraw = true
+o.lazyredraw = false
 o.syntax = "ON"
 o.termguicolors = true
 vim.api.nvim_command('colorscheme PaperColor')
@@ -29,24 +29,22 @@ o.number = true
 o.relativenumber = true
 
 -- [[ Search ]]
-o.showmode = false
+-- showmode eats input and bugs.
+--o.showmode = false
 o.showmatch = true
 o.incsearch = true
 o.ignorecase = true
 o.smartcase = true
 o.hlsearch = true
 
-o.backspace = "indent,eol,start" 
+o.backspace = "indent,eol,start"
 o.autoindent = true
 o.linebreak = true
 o.expandtab = true
-o.tabstop = 2
-o.shiftwidth = 2
+o.tabstop = 4
+o.shiftwidth = 4
 
 o.foldenable = true
 o.foldmethod = 'marker'
 o.foldlevelstart = 20
 o.foldnestmax = 10
-
-
-
