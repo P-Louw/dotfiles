@@ -1,2 +1,3 @@
 **/.luarc.json
-**/**/pack/
+**/**/pack/packer/opt/*
+!**/**/pack/packer/opt/*.md
