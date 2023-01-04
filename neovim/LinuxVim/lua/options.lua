@@ -23,7 +23,6 @@ o.wildmenu = true
 o.lazyredraw = false
 o.syntax = "ON"
 o.termguicolors = true
-vim.api.nvim_command('colorscheme PaperColor')
 
 o.number = true
 o.relativenumber = true

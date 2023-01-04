@@ -1,0 +1,6 @@
+require'plugsconf.lsp_servers.lspconf'
+require'plugsconf.lsp_servers.zlsconf'
+require'plugsconf.lsp_servers.ionideconf'
+require'plugsconf.lsp_servers.groovyconf'
+require'plugsconf.lsp_servers.sumnekoconf'
+require'plugsconf.lsp_servers.pyrightconf'
