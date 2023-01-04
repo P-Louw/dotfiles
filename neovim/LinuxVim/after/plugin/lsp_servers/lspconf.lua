@@ -1,37 +1,19 @@
 
-local M = {}
-
-local opts = { noremap=true, silent=true }
-vim.g.mapleader = ','
-vim.g.localleader = '\\'
-
---[[ Map all keys used by plugins and lsp --]]
-M.setup = function()
---[[
-    Telescope
---]]
-    local builtin = require('telescope.builtin')
-    vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-    vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-    vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-    vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-    -- Alternative way of mapping:
-    --local map = vim.api.nvim_set_keymap
-    --map('n', '<leader>fh', ':Telescope help_tags<CR>', { noremap=true })
---[[
+--[[ 
     LSP
 --]]
-    -- Moved to attach.
-    -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-    -- vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-    -- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-    -- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-    -- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
-end
+
+--[[
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+local opts = { noremap=true, silent=true }
+vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-M.on_attach_lsp = function(client, bufnr)
+local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
   vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
   vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
@@ -57,5 +39,4 @@ M.on_attach_lsp = function(client, bufnr)
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
   vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
 end
-
-return M
+--]]

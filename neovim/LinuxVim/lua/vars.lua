@@ -1,9 +1,11 @@
 local g = vim.g
+-- These keybindings need to be defined before the first /
+-- is called; otherwise, it will default to "\"
+vim.g.mapleader = ","
+vim.g.localleader = "\\"
 
 g.t_co = 256
 g.background = "dark"
-g.python3_host_prog = '/usr/bin/python'
-g.python_host_prog =''
 
 g.netrw_banner = 1
 g.netrw_liststyle = 3
@@ -11,6 +13,3 @@ g.netrw_browse_split = 4
 g.netrw_altv = 1
 g.netrw_winsize = 20
 
--- Set packpath
-local packer_path = vim.fn.stdpath('config') .. '/site'
-vim.o.packpath = vim.o.packpath .. ',' .. packer_path

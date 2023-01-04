@@ -26,10 +26,17 @@ o.termguicolors = true
 
 o.number = true
 o.relativenumber = true
+-- Won't render somehow.
+vim.opt.listchars='tab:>-,space:·,nbsp:␣,trail:•,eol:↲,precedes:«,extends:»,conceal:┊'
 
 -- [[ Search ]]
 -- showmode eats input and bugs.
 --o.showmode = false
+o.wildignore = vim.o.wildignore..table.concat({
+  '*.o','*.obj','.git','*.rbc','*.pyc','__pycache__','*~','*.class',
+  '*.git/*','*.hg/*','*.svn/*',
+  '*/node_modules/*','*/.dist/*','*/.coverage/*'
+})
 o.showmatch = true
 o.incsearch = true
 o.ignorecase = true

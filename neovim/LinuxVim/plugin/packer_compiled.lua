@@ -114,6 +114,11 @@ _G.packer_plugins = {
     path = "/home/kretn/.local/share/nvim/site/pack/packer/start/conjure",
     url = "https://github.com/Olical/conjure"
   },
+  indentLine = {
+    loaded = true,
+    path = "/home/kretn/.local/share/nvim/site/pack/packer/start/indentLine",
+    url = "https://github.com/Yggdroot/indentLine"
+  },
   ["lualine.nvim"] = {
     loaded = true,
     path = "/home/kretn/.local/share/nvim/site/pack/packer/start/lualine.nvim",
