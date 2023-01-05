@@ -17,8 +17,8 @@ g.indentLine_bgcolor_gui = '#FF5F00'
 g.indentLine_char_list = {'|', '¦', '┆', '┊'}
 
 function FileTypeSetup()
-  print(vim.bo.filetype)
   if (vim.bo.filetype == 'json') then
+      print("Setting json indent")
       g.vim_json_syntax_conceal = 0
       vim.opt.conceallevel = 0
   elseif(vim.bo.filetype == 'md') then
@@ -26,6 +26,6 @@ function FileTypeSetup()
   end
 end
 
-vim.api.nvim_create_autocmd({'BufEnter', 'BufNewFile' }, { callback = FileTypeSetup })
+vim.api.nvim_create_autocmd({'BufWinEnter', 'BufEnter', 'BufNewFile' }, { callback = FileTypeSetup })
 
 

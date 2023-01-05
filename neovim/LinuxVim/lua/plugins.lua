@@ -19,9 +19,6 @@ vim.api.nvim_create_autocmd('BufWritePost', { command = 'PackerCompile' })
 -- load packer
 vim.cmd('packadd packer.nvim')
 local setup_packer = require('packer').startup(function(use)
---config = {
---    package_root = vim.fn.stdpath('config') .. '/site/pack'
---    }
 use 'wbthomason/packer.nvim'
 --[[ 
     VISUALS

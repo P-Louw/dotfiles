@@ -7,7 +7,9 @@ require('options')
 require('plugins')
 require('mappings').setup()
 
-vim.api.nvim_command('colorscheme PaperColor')
+--vim.api.nvim_command('colorscheme PaperColor')
+vim.api.nvim_command('colorscheme spaceduck')
+
 
 --[[ 
 function generate_uuid()
