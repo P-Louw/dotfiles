@@ -5,29 +5,45 @@ local opts = { noremap=true, silent=true }
 vim.g.mapleader = ','
 vim.g.localleader = '\\'
 
---[[ Map all keys used by plugins and lsp --]]
+--[[ Map non attach keys for plugins --]]
 M.setup = function()
+  -- Alternative way of mapping:
+  --local map = vim.api.nvim_set_keymap
+  --map('n', '<leader>fh', ':Telescope help_tags<CR>', { noremap=true })
 --[[
     Telescope
 --]]
-    local builtin = require('telescope.builtin')
-    vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-    vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-    vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-    vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-    -- Alternative way of mapping:
-    --local map = vim.api.nvim_set_keymap
-    --map('n', '<leader>fh', ':Telescope help_tags<CR>', { noremap=true })
---[[
-    LSP
---]]
-    -- Moved to attach.
-    -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-    -- vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-    -- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-    -- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-    -- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+  local builtin = require('telescope.builtin')
+  vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+  vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+  vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+  vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
 end
+
+local cmp = require('cmp')
+local luasnip = require('luasnip')
+local select_opts = {behavior = cmp.SelectBehavior.Select}
+
+M.cmp_mappings = {
+  -- Cancel completion.
+  ['<C-e>'] = cmp.mapping.abort(),
+  -- Autocomplete with tab.
+  ['<Tab>'] = cmp.mapping(function(fallback)
+    -- Confirm completion.
+  local col = vim.fn.col('.') - 1
+  if cmp.visible() then
+    cmp.select_next_item(select_opts)
+  elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
+    fallback()
+  else
+    cmp.complete()
+  end
+end, {'i', 's'}),
+['<CR>'] = cmp.mapping.confirm({select = false}),
+-- Scroll in doc window.
+['<C-u>'] = cmp.mapping.scroll_docs(-4),
+['<C-f>'] = cmp.mapping.scroll_docs(4),
+}
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
