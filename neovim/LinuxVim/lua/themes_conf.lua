@@ -1,5 +1,6 @@
 vim.g.material_style = 'palenight'
-vim.cmd 'colorscheme material'
+-- vim.cmd 'colorscheme material'
+vim.cmd 'colorscheme spaceduck'
 
 require('material').setup({
   contrast = {

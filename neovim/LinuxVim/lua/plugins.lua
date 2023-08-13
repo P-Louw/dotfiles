@@ -19,7 +19,7 @@ local setup_packer = require('packer').startup(function(use)
   }
   use 'marko-cerovac/material.nvim'
 
-  use 'Yggdroot/indentLine'
+  use "lukas-reineke/indent-blankline.nvim"
   use 'tpope/vim-surround'
   use {
     "windwp/nvim-autopairs",
@@ -52,12 +52,23 @@ local setup_packer = require('packer').startup(function(use)
   use 'ziglang/zig.vim'
   use({ 'ckipp01/nvim-jenkinsfile-linter', requires = { "nvim-lua/plenary.nvim" } })
 
-  use 'Olical/conjure'
-  use 'clojure-vim/clojure.vim'
-  use 'PaterJason/cmp-conjure'
-  use 'clojure-vim/vim-jack-in'
-  use 'guns/vim-sexp'
-  use 'tpope/vim-sexp-mappings-for-regular-people'
+  -- Selective load conjure related plugins only on clojure.
+  local conjure_deps = {
+    'Olical/conjure',
+    'clojure-vim/clojure.vim',
+    'PaterJason/cmp-conjure',
+    'clojure-vim/vim-jack-in',
+    'guns/vim-sexp',
+    'tpope/vim-sexp-mappings-for-regular-people',
+    'Olical/conjure',
+  }
+  for _, plugname in pairs(conjure_deps) do
+    use (plugname)
+    --use {
+    --  (plugname),
+    --  ft = { 'clj', 'cljs' }
+    --}
+  end
 
   use {
     "folke/which-key.nvim",

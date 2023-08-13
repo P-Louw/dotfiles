@@ -30,7 +30,7 @@ vim.o.spell = false
 local spell_files = { "md", "txt" }
 for _, t in ipairs(spell_files) do
   if(vim.o.filetype == t)
-    then 
+    then
       vim.o.spell = true
       break
   end
