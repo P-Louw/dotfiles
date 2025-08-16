@@ -1,8 +1,6 @@
-vim.g.material_style = 'palenight'
--- vim.cmd 'colorscheme material'
--- vim.cmd 'colorscheme spaceduck'
--- vim.cmd 'colorscheme habamax'
-vim.cmd 'colorscheme sorbet'
+--vim.g.material_style = 'palenight'
+--vim.cmd 'colorscheme habamax'
+vim.cmd 'colorscheme zenbones'
 
 require('material').setup({
   contrast = {

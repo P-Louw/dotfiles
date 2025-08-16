@@ -1,3 +1,4 @@
 **/.luarc.json
 **/**/pack/packer/opt/*
 !**/**/pack/packer/opt/*.md
+**/node_modules

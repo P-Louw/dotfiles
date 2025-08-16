@@ -17,8 +17,15 @@ local setup_packer = require('packer').startup(function(use)
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
+  use({ 'seblj/nvim-tabline', requires = { 'nvim-tree/nvim-web-devicons' } })
   use 'marko-cerovac/material.nvim'
+  use 'ellisonleao/gruvbox.nvim'
+  use 'rktjmp/lush.nvim'
+  use 'rebelot/kanagawa.nvim'
+  use 'zenbones-theme/zenbones.nvim'
+  use({ 'rose-pine/neovim', as = 'rose-pine' })
 
+  --use 'Yggdroot/indentLine'
   use "lukas-reineke/indent-blankline.nvim"
   use 'tpope/vim-surround'
   use {
@@ -39,6 +46,8 @@ local setup_packer = require('packer').startup(function(use)
     end,
   }
 
+  use 'mfussenegger/nvim-dap'
+
   use 'neovim/nvim-lspconfig'
   use 'hrsh7th/cmp-nvim-lsp'
   use 'hrsh7th/cmp-buffer'
@@ -50,6 +59,15 @@ local setup_packer = require('packer').startup(function(use)
 
   use 'ionide/Ionide-vim'
   use 'ziglang/zig.vim'
+  use({ 'ckipp01/nvim-jenkinsfile-linter', requires = { "nvim-lua/plenary.nvim" } })
+
+  use 'Olical/conjure'
+  use 'clojure-vim/clojure.vim'
+  use 'PaterJason/cmp-conjure'
+  use 'clojure-vim/vim-jack-in'
+  use 'guns/vim-sexp'
+  use 'tpope/vim-sexp-mappings-for-regular-people'
+
   use {
     "folke/which-key.nvim",
     config = function()
@@ -58,7 +76,7 @@ local setup_packer = require('packer').startup(function(use)
     end
   }
   use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.4',
+    'nvim-telescope/telescope.nvim', tag = '0.1.0',
     -- or                            , branch = '0.1.x',
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
