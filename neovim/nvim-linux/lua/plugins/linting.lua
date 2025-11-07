@@ -10,10 +10,11 @@ return {
         typescript = { "eslint_d" },
         javascriptreact = { "eslint_d" },
         typescriptreact = { "eslint_d" },
-        python = { "pylint" },
+        python = { "ruff" },
         markdown = { "markdownlint" },
         dockerfile = { "hadolint" },
         yaml = { "yamllint" },
+        ["yaml.ansible"] = { "ansible_lint" },
       }
 
       -- Create autocommand which carries out the actual linting

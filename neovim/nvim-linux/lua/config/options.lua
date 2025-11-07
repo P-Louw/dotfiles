@@ -39,13 +39,19 @@ opt.swapfile = false
 --opt.foldmethod = 'expr'
 --opt.foldexpr = 'nvim_treesitter#foldexpr()'
 
+-- Ansible file detection
+-- .yaml files are Ansible, .yml files are regular YAML
 vim.filetype.add({
-  extension={
-    yml = "yaml.ansible"
-  }
+  extension = {
+    yaml = "yaml.ansible",
+  },
+  pattern = {
+    -- Detect Ansible files by common patterns
+    [".*playbooks/.*%.yml"] = "yaml.ansible",
+    [".*roles/.*/tasks/.*%.yml"] = "yaml.ansible",
+    [".*roles/.*/handlers/.*%.yml"] = "yaml.ansible",
+    [".*group_vars/.*%.yml"] = "yaml.ansible",
+    [".*host_vars/.*%.yml"] = "yaml.ansible",
+    [".*ansible/.*%.yml"] = "yaml.ansible",
+  },
 })
--- vim.filetype.add({
---   extension={
---     bb = "clojure"
---   }
--- })

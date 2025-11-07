@@ -94,6 +94,52 @@ return {
           },
         })
       end,
+      ["ansiblels"] = function()
+        lspconfig["ansiblels"].setup({
+          capabilities = capabilities,
+          filetypes = { "yaml.ansible" },
+          settings = {
+            ansible = {
+              python = {
+                interpreterPath = "python3",
+              },
+              ansible = {
+                path = "ansible",
+              },
+              executionEnvironment = {
+                enabled = false,
+              },
+              validation = {
+                enabled = true,
+                lint = {
+                  enabled = true,
+                  path = "ansible-lint",
+                },
+              },
+            },
+          },
+        })
+      end,
+      ["yamlls"] = function()
+        lspconfig["yamlls"].setup({
+          capabilities = capabilities,
+          settings = {
+            yaml = {
+              schemas = {
+                ["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+                ["https://json.schemastore.org/github-action.json"] = "/.github/action.{yml,yaml}",
+                ["https://json.schemastore.org/ansible-stable-2.9.json"] = "roles/tasks/*.{yml,yaml}",
+              },
+            },
+          },
+          -- Don't attach to yaml.ansible files
+          on_attach = function(client, bufnr)
+            if vim.bo[bufnr].filetype == "yaml.ansible" then
+              vim.lsp.buf_detach_client(bufnr, client.id)
+            end
+          end,
+        })
+      end,
     })
   end,
 }
