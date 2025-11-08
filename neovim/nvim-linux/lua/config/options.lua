@@ -39,19 +39,22 @@ opt.swapfile = false
 --opt.foldmethod = 'expr'
 --opt.foldexpr = 'nvim_treesitter#foldexpr()'
 
--- Ansible file detection
--- .yaml files are Ansible, .yml files are regular YAML
+-- Filetype detection for Ansible
+-- Note: Helm filetype detection is handled by helm-ls.nvim plugin
 vim.filetype.add({
-  extension = {
-    yaml = "yaml.ansible",
-  },
   pattern = {
     -- Detect Ansible files by common patterns
     [".*playbooks/.*%.yml"] = "yaml.ansible",
+    [".*playbooks/.*%.yaml"] = "yaml.ansible",
     [".*roles/.*/tasks/.*%.yml"] = "yaml.ansible",
+    [".*roles/.*/tasks/.*%.yaml"] = "yaml.ansible",
     [".*roles/.*/handlers/.*%.yml"] = "yaml.ansible",
+    [".*roles/.*/handlers/.*%.yaml"] = "yaml.ansible",
     [".*group_vars/.*%.yml"] = "yaml.ansible",
+    [".*group_vars/.*%.yaml"] = "yaml.ansible",
     [".*host_vars/.*%.yml"] = "yaml.ansible",
+    [".*host_vars/.*%.yaml"] = "yaml.ansible",
     [".*ansible/.*%.yml"] = "yaml.ansible",
+    [".*ansible/.*%.yaml"] = "yaml.ansible",
   },
 })

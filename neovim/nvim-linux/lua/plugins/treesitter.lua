@@ -41,6 +41,7 @@ return {
                 "svelte",
                 "typst",
                 "vue",
+                "helm",
             },
             incremental_selection = {
                 enable = true,
