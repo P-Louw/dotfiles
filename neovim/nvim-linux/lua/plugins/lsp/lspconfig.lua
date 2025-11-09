@@ -79,124 +79,121 @@ return {
 				"nil_ls",
 				"yamlls",
 				"helm_ls",
+				"marksman",
 			},
 			automatic_installation = true,
 			handlers = {
-			-- default handler for installed servers
-			function(server_name)
-				lspconfig[server_name].setup({
-					capabilities = capabilities,
-				})
-			end,
-			["emmet_ls"] = function()
-				lspconfig["emmet_ls"].setup({
-					capabilities = capabilities,
-					filetypes = {
-						"html",
-						"typescriptreact",
-						"javascriptreact",
-						"css",
-						"sass",
-						"scss",
-						"less",
-						"svelte",
-					},
-				})
-			end,
-			["lua_ls"] = function()
-				lspconfig["lua_ls"].setup({
-					capabilities = capabilities,
-					settings = {
-						Lua = {
-							-- make the language server recognize "vim" global
-							diagnostics = {
-								globals = { "vim" },
-							},
-							completion = {
-								callSnippet = "Replace",
-							},
+				-- default handler for installed servers
+				function(server_name)
+					lspconfig[server_name].setup({
+						capabilities = capabilities,
+					})
+				end,
+				["emmet_ls"] = function()
+					lspconfig["emmet_ls"].setup({
+						capabilities = capabilities,
+						filetypes = {
+							"html",
+							"typescriptreact",
+							"javascriptreact",
+							"css",
+							"sass",
+							"scss",
+							"less",
+							"svelte",
 						},
-					},
-				})
-			end,
-			["ansiblels"] = function()
-				lspconfig["ansiblels"].setup({
-					capabilities = capabilities,
-					filetypes = { "yaml.ansible" },
-					-- Don't attach to helm files
-					on_attach = function(client, bufnr)
-						if vim.bo[bufnr].filetype == "helm" then
-							vim.lsp.buf_detach_client(bufnr, client.id)
-						end
-					end,
-					settings = {
-						ansible = {
-							python = {
-								interpreterPath = "python3",
-							},
-							ansible = {
-								path = "ansible",
-							},
-							executionEnvironment = {
-								enabled = false,
-							},
-							validation = {
-								enabled = true,
-								lint = {
-									enabled = true,
-									path = "ansible-lint",
+					})
+				end,
+				["lua_ls"] = function()
+					lspconfig["lua_ls"].setup({
+						capabilities = capabilities,
+						settings = {
+							Lua = {
+								-- make the language server recognize "vim" global
+								diagnostics = {
+									globals = { "vim" },
+								},
+								completion = {
+									callSnippet = "Replace",
 								},
 							},
 						},
-					},
-				})
-			end,
-			["yamlls"] = function()
-				lspconfig["yamlls"].setup({
-					capabilities = capabilities,
-					settings = {
-						yaml = {
-							schemas = {
-								["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-								["https://json.schemastore.org/github-action.json"] = "/.github/action.{yml,yaml}",
-								["https://json.schemastore.org/ansible-stable-2.9.json"] = "roles/tasks/*.{yml,yaml}",
-							},
-						},
-					},
-					-- Don't attach to yaml.ansible files
-					on_attach = function(client, bufnr)
-						if vim.bo[bufnr].filetype == "yaml.ansible" then
-							vim.lsp.buf_detach_client(bufnr, client.id)
-						end
-					end,
-				})
-			end,
-			["helm_ls"] = function()
-				lspconfig["helm_ls"].setup({
-					capabilities = capabilities,
-					filetypes = { "helm" },
-					settings = {
-						["helm-ls"] = {
-							yamlls = {
-								path = "yaml-language-server",
-								config = {
-									schemas = {
-										-- Apply all CloudNativePG CRDs to any helm template file
-										["https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/postgresql.cnpg.io/cluster_v1.json"] = "templates/*.yaml",
-										["https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/postgresql.cnpg.io/backup_v1.json"] = "templates/*.yaml",
-										["https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/postgresql.cnpg.io/scheduledbackup_v1.json"] = "templates/*.yaml",
-										["https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/postgresql.cnpg.io/pooler_v1.json"] = "templates/*.yaml",
-										["https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/postgresql.cnpg.io/database_v1.json"] = "templates/*.yaml",
-										["https://raw.githubusercontent.com/datreeio/CRDs-catalog/main/postgresql.cnpg.io/imagecatalog_v1.json"] = "templates/*.yaml",
-										-- Default kubernetes schema
-										kubernetes = "templates/*.yaml",
+					})
+				end,
+				["ansiblels"] = function()
+					lspconfig["ansiblels"].setup({
+						capabilities = capabilities,
+						filetypes = { "yaml.ansible" },
+						-- Don't attach to helm files
+						on_attach = function(client, bufnr)
+							if vim.bo[bufnr].filetype == "helm" then
+								vim.lsp.buf_detach_client(bufnr, client.id)
+							end
+						end,
+						settings = {
+							ansible = {
+								python = {
+									interpreterPath = "python3",
+								},
+								ansible = {
+									path = "ansible",
+								},
+								executionEnvironment = {
+									enabled = false,
+								},
+								validation = {
+									enabled = true,
+									lint = {
+										enabled = true,
+										path = "ansible-lint",
 									},
 								},
 							},
 						},
-					},
-				})
-			end,
+					})
+				end,
+				["yamlls"] = function()
+					lspconfig["yamlls"].setup({
+						capabilities = capabilities,
+						settings = {
+							yaml = {
+								schemas = {
+									["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
+									["https://json.schemastore.org/github-action.json"] = "/.github/action.{yml,yaml}",
+									["https://json.schemastore.org/ansible-stable-2.9.json"] = "roles/tasks/*.{yml,yaml}",
+								},
+							},
+						},
+						-- Don't attach to yaml.ansible files
+						on_attach = function(client, bufnr)
+							if vim.bo[bufnr].filetype == "yaml.ansible" then
+								vim.lsp.buf_detach_client(bufnr, client.id)
+							end
+						end,
+					})
+				end,
+				["helm_ls"] = function()
+					lspconfig["helm_ls"].setup({
+						capabilities = capabilities,
+						filetypes = { "helm" },
+						settings = {
+							["helm-ls"] = {
+								yamlls = {
+									enabled = true,
+									path = "yaml-language-server",
+									config = {
+										schemas = {
+											kubernetes = "templates/**",
+										},
+										validate = true,
+										hover = true,
+										completion = true,
+									},
+								},
+							},
+						},
+					})
+				end,
 			}, -- end handlers
 		}) -- end mason_lspconfig.setup
 	end,

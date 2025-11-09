@@ -24,7 +24,16 @@ return {
         json = { "prettierd", "prettier", stop_after_first = true },
         yaml = { "prettierd", "prettier", stop_after_first = true },
         ["yaml.ansible"] = { "prettier" },
-        markdown = { "prettierd", "prettier", stop_after_first = true },
+        markdown = {
+          "prettier",
+          "markdownlint-cli2",
+          "markdown-toc",
+        },
+        ["markdown.mdx"] = {
+          "prettier",
+          "markdownlint-cli2",
+          "markdown-toc",
+        },
         html = { "prettierd", "prettier", stop_after_first = true },
         css = { "prettierd", "prettier", stop_after_first = true },
         scss = { "prettierd", "prettier", stop_after_first = true },

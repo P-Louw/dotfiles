@@ -11,7 +11,7 @@ return {
         javascriptreact = { "eslint_d" },
         typescriptreact = { "eslint_d" },
         python = { "ruff" },
-        markdown = { "markdownlint" },
+        markdown = { "markdownlint-cli2" },
         dockerfile = { "hadolint" },
         yaml = { "yamllint" },
         ["yaml.ansible"] = { "ansible_lint" },
