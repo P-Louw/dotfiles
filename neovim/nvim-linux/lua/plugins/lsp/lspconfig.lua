@@ -21,45 +21,59 @@ return {
 				-- See `:help vim.lsp.*` for documentation on any of the below functions
 				local opts = { buffer = ev.buf, silent = true }
 
-				-- set keybinds
-				opts.desc = "Show LSP references"
-				keymap.set("n", "gR", "<leader>Telescope lsp_references<CR>", opts)
+				-- LSP navigation keybinds
+				opts.desc = "Go to References"
+				keymap.set("n", "gr", vim.lsp.buf.references, opts)
 
-				opts.desc = "Go to declaration"
+				opts.desc = "Go to Declaration"
 				keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 
-				opts.desc = "Show LSP definitions"
-				keymap.set("n", "gd", "<leader>Telescope lsp_definitions<CR>", opts)
+				opts.desc = "Go to Definition"
+				keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 
-				opts.desc = "Show LSP implementations"
-				keymap.set("n", "gi", "<leader>Telescope lsp_implementations<CR>", opts)
+				opts.desc = "Go to Implementation"
+				keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
 
-				opts.desc = "Show LSP type definitions"
-				keymap.set("n", "gt", "<leader>Telescope lsp_type_definitions<CR>", opts)
+				opts.desc = "Go to Type Definition"
+				keymap.set("n", "gt", vim.lsp.buf.type_definition, opts)
 
-				opts.desc = "See available code actions"
-				keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
-
-				opts.desc = "Smart rename"
-				keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
-
-				opts.desc = "Show buffer diagnostics"
-				keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts)
-
-				opts.desc = "Show line diagnostics"
-				keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts)
-
-				opts.desc = "Go to previous diagnostic"
-				keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
-
-				opts.desc = "Go to next diagnostic"
-				keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
-
-				opts.desc = "Show documentation for what is under cursor"
+				opts.desc = "Hover Documentation"
 				keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
+				opts.desc = "Signature Help"
+				keymap.set("n", "gK", vim.lsp.buf.signature_help, opts)
+
+				opts.desc = "Signature Help"
+				keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, opts)
+
+				-- Code actions
+				opts.desc = "Code Action"
+				keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts)
+
+				opts.desc = "Rename Symbol"
+				keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
+
+				opts.desc = "Format Buffer"
+				keymap.set({ "n", "v" }, "<leader>cf", function()
+					vim.lsp.buf.format({ async = true })
+				end, opts)
+
+				-- Diagnostics
+				opts.desc = "Line Diagnostics"
+				keymap.set("n", "<leader>cd", vim.diagnostic.open_float, opts)
+
+				opts.desc = "Go to Previous Diagnostic"
+				keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+
+				opts.desc = "Go to Next Diagnostic"
+				keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+
+				-- Utility
+				opts.desc = "LSP Info"
+				keymap.set("n", "<leader>cl", "<cmd>LspInfo<cr>", opts)
+
 				opts.desc = "Restart LSP"
-				keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts)
+				keymap.set("n", "<leader>rs", "<cmd>LspRestart<cr>", opts)
 			end,
 		})
 
