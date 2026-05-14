@@ -12,12 +12,6 @@ return {
 		config = function(_, opts)
 			require("mason").setup()
 			local mr = require("mason-registry")
-			mr:on("package:install:success", function()
-				vim.defer_fn(function()
-					-- Auto-install configured tools
-					require("mason-tool-installer").check_install(true)
-				end, 100)
-			end)
 
 			local function ensure_installed()
 				for _, tool in ipairs(opts.ensure_installed) do

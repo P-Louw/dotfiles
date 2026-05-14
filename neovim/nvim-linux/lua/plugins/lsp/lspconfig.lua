@@ -141,7 +141,7 @@ return {
 						-- Don't attach to helm files
 						on_attach = function(client, bufnr)
 							if vim.bo[bufnr].filetype == "helm" then
-								vim.lsp.buf_detach_client(bufnr, client.id)
+								vim.lsp.stop_client(client.id)
 							end
 						end,
 						settings = {
@@ -181,7 +181,7 @@ return {
 						-- Don't attach to yaml.ansible files
 						on_attach = function(client, bufnr)
 							if vim.bo[bufnr].filetype == "yaml.ansible" then
-								vim.lsp.buf_detach_client(bufnr, client.id)
+								vim.lsp.stop_client(client.id)
 							end
 						end,
 					})

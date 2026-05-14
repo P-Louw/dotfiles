@@ -1,5 +1,7 @@
 return {
     "nvim-treesitter/nvim-treesitter",
+    version = false,
+    commit = "v0.9.3",
     event = { "BufReadPre", "BufNewFile" },
     build = ":TSUpdate",
     dependencies = {
@@ -31,6 +33,7 @@ return {
                 "bash",
                 "lua",
                 "vim",
+                "regex",
                 "dockerfile",
                 "gitignore",
                 "c",
@@ -51,16 +54,6 @@ return {
                     scope_incremental = false,
                     node_decremental = "<bs>",
                 },
-            },
-            rainbow = {
-                enable = true,
-                disable = { "html" },
-                extended_mode = false,
-                max_file_lines = nil,
-            },
-            context_commentstring = {
-                enable = true,
-                enable_autocmd = false,
             },
         })
     end,
