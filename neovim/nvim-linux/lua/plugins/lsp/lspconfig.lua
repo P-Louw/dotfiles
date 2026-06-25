@@ -6,6 +6,7 @@ return {
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 		"williamboman/mason.nvim",
 		{ "williamboman/mason-lspconfig.nvim", config = function() end },
+		{ "b0o/schemastore.nvim", lazy = true },
 	},
 	config = function()
 		local lspconfig = require("lspconfig")
@@ -171,11 +172,13 @@ return {
 						capabilities = capabilities,
 						settings = {
 							yaml = {
-								schemas = {
-									["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-									["https://json.schemastore.org/github-action.json"] = "/.github/action.{yml,yaml}",
-									["https://json.schemastore.org/ansible-stable-2.9.json"] = "roles/tasks/*.{yml,yaml}",
+								-- Disable auto schema download — fetching schemas for 1900+ YAML files
+								-- causes severe startup freeze in large infra repos
+								schemaStore = {
+									enable = false,
+									url = "",
 								},
+								schemas = require("schemastore").yaml.schemas(),
 							},
 						},
 						-- Don't attach to yaml.ansible files

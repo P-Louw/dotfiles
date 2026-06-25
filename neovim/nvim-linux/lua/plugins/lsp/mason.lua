@@ -7,6 +7,12 @@ return {
 			ensure_installed = {
 				"markdownlint-cli2",
 				"markdown-toc",
+				"yamllint",
+				"ansible-lint",
+				"hadolint",
+				"prettierd",
+				"stylua",
+				"shfmt",
 			},
 		},
 		config = function(_, opts)
