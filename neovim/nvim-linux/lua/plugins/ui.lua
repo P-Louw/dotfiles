@@ -212,6 +212,9 @@ return {
     "folke/snacks.nvim",
     priority = 1000,
     lazy = false,
+    dependencies = {
+      { "kkharji/sqlite.lua", lazy = true },
+    },
     opts = {
       bigfile = { enabled = true },
       dashboard = {
@@ -222,6 +225,7 @@ return {
           { section = "startup" },
         },
       },
+      image = { enabled = true },
       indent = {
         enabled = true,
         indent = {
@@ -233,6 +237,7 @@ return {
         enabled = true,
         timeout = 3000,
       },
+      picker = { enabled = true },
       quickfile = { enabled = true },
       scroll = { enabled = true },
       statuscolumn = { enabled = true },

@@ -6,6 +6,7 @@ return {
 		{ "antosha417/nvim-lsp-file-operations", config = true },
 		"williamboman/mason.nvim",
 		{ "williamboman/mason-lspconfig.nvim", config = function() end },
+		{ "b0o/schemastore.nvim", lazy = true },
 	},
 	config = function()
 		local lspconfig = require("lspconfig")
@@ -141,7 +142,7 @@ return {
 						-- Don't attach to helm files
 						on_attach = function(client, bufnr)
 							if vim.bo[bufnr].filetype == "helm" then
-								vim.lsp.buf_detach_client(bufnr, client.id)
+								vim.lsp.stop_client(client.id)
 							end
 						end,
 						settings = {
@@ -171,17 +172,19 @@ return {
 						capabilities = capabilities,
 						settings = {
 							yaml = {
-								schemas = {
-									["https://json.schemastore.org/github-workflow.json"] = "/.github/workflows/*",
-									["https://json.schemastore.org/github-action.json"] = "/.github/action.{yml,yaml}",
-									["https://json.schemastore.org/ansible-stable-2.9.json"] = "roles/tasks/*.{yml,yaml}",
+								-- Disable auto schema download — fetching schemas for 1900+ YAML files
+								-- causes severe startup freeze in large infra repos
+								schemaStore = {
+									enable = false,
+									url = "",
 								},
+								schemas = require("schemastore").yaml.schemas(),
 							},
 						},
 						-- Don't attach to yaml.ansible files
 						on_attach = function(client, bufnr)
 							if vim.bo[bufnr].filetype == "yaml.ansible" then
-								vim.lsp.buf_detach_client(bufnr, client.id)
+								vim.lsp.stop_client(client.id)
 							end
 						end,
 					})
