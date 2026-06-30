@@ -38,6 +38,7 @@ return {
                 "c",
                 "rust",
                 "python",
+                "zig",
                 "latex",
                 "norg",
                 "svelte",

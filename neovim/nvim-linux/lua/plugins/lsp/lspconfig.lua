@@ -90,6 +90,7 @@ return {
 				"lua_ls",
 				"emmet_ls",
 				"pyright",
+				"zls",
 				"ansiblels",
 				"nil_ls",
 				"yamlls",
