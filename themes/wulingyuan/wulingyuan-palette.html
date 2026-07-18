@@ -1,0 +1,182 @@
+<!doctype html>
+<html>
+<head>
+<meta charset=utf8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<title>Wulingyuan — muted green rice palette</title>
+<style>
+  :root{
+    /* the scheme itself, doubling as the page's own palette — soft/misty dark */
+    --base00:#232b25; --base01:#2b352e; --base02:#3a4740; --base03:#5f7167;
+    --base04:#85917d; --base05:#bcccc5; --base06:#d6ded8; --base07:#eef0e9;
+    --red:#bd6b50; --orange:#cd8b5c; --yellow:#b3b06a; --green:#8faa7d;
+    --cyan:#7ea896; --blue:#8ba6b8; --purple:#a292ac; --brown:#977c5d;
+    --serif: Georgia, 'Iowan Old Style', 'Times New Roman', serif;
+    --mono: ui-monospace, 'JetBrains Mono', 'SF Mono', Menlo, Consolas, monospace;
+    --sys: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--base00);color:var(--base05);
+    font-family:var(--sys);line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(120% 80% at 50% -10%, #2f3a32 0%, var(--base00) 55%);}
+  .wrap{max-width:1000px;margin:0 auto;padding:clamp(2rem,5vw,4.5rem) 1.5rem 5rem;}
+
+  header{margin-bottom:3.5rem;}
+  .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.28em;
+    text-transform:uppercase;color:var(--base04);margin:0 0 1.1rem;}
+  h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.4rem,6vw,4rem);
+    line-height:1.05;letter-spacing:-.01em;margin:0;color:var(--base07);
+    text-wrap:balance;}
+  h1 em{font-style:italic;color:var(--green);}
+  .lede{max-width:60ch;margin:1.4rem 0 0;font-size:1.06rem;color:var(--base05);}
+  .lede b{color:var(--base06);font-weight:600;}
+
+  .prov{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.6rem;}
+  .prov span{font-family:var(--mono);font-size:.72rem;color:var(--base04);
+    border:1px solid var(--base02);border-radius:999px;padding:.3rem .75rem;}
+
+  h2{font-family:var(--mono);font-size:.78rem;letter-spacing:.24em;
+    text-transform:uppercase;color:var(--base04);font-weight:500;
+    margin:3.5rem 0 1.2rem;display:flex;align-items:baseline;gap:.9rem;}
+  h2::after{content:"";flex:1;height:1px;background:var(--base02);}
+
+  .grid{display:grid;gap:.9rem;
+    grid-template-columns:repeat(auto-fill,minmax(150px,1fr));}
+  .sw{background:var(--base01);border:1px solid var(--base02);border-radius:10px;
+    overflow:hidden;cursor:pointer;transition:transform .18s ease,border-color .18s ease;
+    text-align:left;font:inherit;color:inherit;padding:0;display:block;}
+  .sw:hover{transform:translateY(-3px);border-color:var(--base03);}
+  .sw:focus-visible{outline:2px solid var(--green);outline-offset:2px;}
+  .chip{height:78px;}
+  .meta{padding:.7rem .8rem .8rem;}
+  .role{font-size:.82rem;color:var(--base06);font-weight:600;}
+  .sub{font-size:.7rem;color:var(--base04);margin-top:.1rem;}
+  .hex{font-family:var(--mono);font-size:.74rem;color:var(--base05);
+    margin-top:.55rem;letter-spacing:.03em;text-transform:uppercase;}
+
+  /* live preview */
+  .term{margin-top:1.4rem;border:1px solid var(--base02);border-radius:12px;
+    overflow:hidden;background:var(--base00);box-shadow:0 18px 50px -25px #000;}
+  .bar{display:flex;align-items:center;gap:.6rem;padding:.6rem .9rem;
+    background:var(--base01);border-bottom:1px solid var(--base02);
+    font-family:var(--mono);font-size:.74rem;color:var(--base04);}
+  .dot{width:11px;height:11px;border-radius:50%;}
+  .code{margin:0;padding:1.1rem 1.2rem;font-family:var(--mono);
+    font-size:.82rem;line-height:1.75;overflow-x:auto;color:var(--base05);}
+  .code .c{color:var(--base03);font-style:italic;}
+  .kw{color:var(--purple);} .fn{color:var(--blue);} .str{color:var(--green);}
+  .num{color:var(--orange);} .var{color:var(--base06);} .op{color:var(--cyan);}
+  .ty{color:var(--yellow);}
+  .status{display:flex;gap:0;font-family:var(--mono);font-size:.74rem;
+    border-top:1px solid var(--base02);}
+  .status div{padding:.45rem .9rem;}
+  .st-mode{background:var(--green);color:var(--base00);font-weight:600;}
+  .st-mid{background:var(--base01);color:var(--base04);flex:1;}
+  .st-r{background:var(--base02);color:var(--base05);}
+  .st-clk{background:var(--blue);color:var(--base00);font-weight:600;}
+
+  footer{margin-top:3.5rem;padding-top:1.6rem;border-top:1px solid var(--base02);
+    font-size:.92rem;color:var(--base04);max-width:62ch;}
+  footer b{color:var(--green);font-weight:600;}
+  footer code{font-family:var(--mono);font-size:.82em;color:var(--base05);
+    background:var(--base01);padding:.1rem .4rem;border-radius:4px;}
+
+  #toast{position:fixed;left:50%;bottom:2rem;transform:translateX(-50%) translateY(1rem);
+    background:var(--base07);color:var(--base00);font-family:var(--mono);
+    font-size:.8rem;padding:.55rem 1rem;border-radius:8px;opacity:0;
+    pointer-events:none;transition:opacity .2s ease,transform .2s ease;z-index:9;}
+  #toast.on{opacity:1;transform:translateX(-50%) translateY(0);}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Palette · Zhangjiajie · Yangshuo · soft dark</p>
+    <h1>Muted greens for a <em>misty-peak</em> rice</h1>
+    <p class="lede">Sixteen colors sampled straight from your photos, tuned to the <b>house_hill / river</b> mist. A <b>soft dark</b> base — lifted, low-contrast, never black — so the UI stays readable while the bright misty photo carries the wallpaper. Every accent now comes from a real element: <b>teal from the river water, red &amp; orange from the prayer ribbons.</b></p>
+    <div class="prov">
+      <span>src: house_hill · river</span>
+      <span>accents: ribbons · water</span>
+      <span>family: Everforest soft</span>
+      <span>click any swatch to copy</span>
+    </div>
+  </header>
+
+  <h2>Base ramp · bg → fg</h2>
+  <div class="grid" id="base"></div>
+
+  <h2>Accents · syntax &amp; ui</h2>
+  <div class="grid" id="accent"></div>
+
+  <h2>In context</h2>
+  <div class="term">
+    <div class="bar">
+      <span class="dot" style="background:var(--red)"></span>
+      <span class="dot" style="background:var(--yellow)"></span>
+      <span class="dot" style="background:var(--green)"></span>
+      <span style="margin-left:.4rem">hypr ~ nvim  wulingyuan.conf</span>
+    </div>
+    <pre class="code"><span class="c"># the peaks, translated to a desktop</span>
+<span class="kw">def</span> <span class="fn">grade</span>(<span class="var">photo</span>, <span class="var">mood</span><span class="op">=</span><span class="str">"muted"</span>):
+    <span class="var">haze</span> <span class="op">=</span> <span class="fn">desaturate</span>(<span class="var">photo</span>, <span class="num">0.18</span>)
+    <span class="var">shadows</span> <span class="op">=</span> <span class="var">haze</span>.<span class="fn">shift_hue</span>(<span class="ty">Teal</span>, <span class="num">12</span>)
+    <span class="kw">return</span> <span class="var">shadows</span>.<span class="fn">lift_black</span>(<span class="num">0.04</span>)  <span class="c"># flat, atmospheric</span></pre>
+    <div class="status">
+      <div class="st-mode">NORMAL</div>
+      <div class="st-mid">~/pics/china/wulingyuan.raw</div>
+      <div class="st-r">utf-8</div>
+      <div class="st-clk">14:22</div>
+    </div>
+  </div>
+
+  <footer>
+    This is an <b>Everforest soft-dark</b> cousin, so existing Hyprland, waybar, kitty and nvim themes in that world are drop-in references. Feed the graded <code>river</code> photo to <code>matugen</code> to bootstrap all your configs, then paste these accents over the 2–3 it gets wrong — especially the ribbon red, which extractors always over-saturate. Base names follow the <code>base16</code> convention so any base16 templater will map cleanly.
+  </footer>
+</div>
+
+<div id="toast">copied</div>
+
+<script>
+  const base=[
+    ['#232b25','base00 · bg','misty dark (lifted)'],
+    ['#2b352e','base01 · bg alt','panel / inactive'],
+    ['#3a4740','base02 · selection','forest shadow'],
+    ['#5f7167','base03 · comment','muted teal-grey'],
+    ['#85917d','base04 · fg dim','sage khaki'],
+    ['#bcccc5','base05 · fg','misty green (sampled)'],
+    ['#d6ded8','base06 · fg bright','pale fog'],
+    ['#eef0e9','base07 · white','luminous haze'],
+  ];
+  const accent=[
+    ['#bd6b50','red','prayer ribbon, muted'],
+    ['#cd8b5c','orange','ribbon highlight'],
+    ['#b3b06a','yellow','moss, olive lifted'],
+    ['#8faa7d','green','the hero — mid sage'],
+    ['#7ea896','cyan','river water (sampled)'],
+    ['#8ba6b8','blue','atmospheric haze'],
+    ['#a292ac','purple','distant-ridge mauve'],
+    ['#977c5d','brown','sandstone / wood'],
+  ];
+  const toast=document.getElementById('toast');let t;
+  function card(c){
+    const [hex,role,sub]=c;
+    const dark=parseInt(hex.slice(1,3),16)*.299+parseInt(hex.slice(3,5),16)*.587+parseInt(hex.slice(5,7),16)*.114<140;
+    const b=document.createElement('button');
+    b.className='sw';
+    b.innerHTML=`<div class="chip" style="background:${hex}"></div>`+
+      `<div class="meta"><div class="role">${role}</div>`+
+      `<div class="sub">${sub}</div><div class="hex">${hex}</div></div>`;
+    b.onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText(hex);
+      toast.textContent=hex+' copied';toast.classList.add('on');
+      clearTimeout(t);t=setTimeout(()=>toast.classList.remove('on'),1100);};
+    return b;
+  }
+  base.forEach(c=>document.getElementById('base').appendChild(card(c)));
+  accent.forEach(c=>document.getElementById('accent').appendChild(card(c)));
+</script>
+
+</body>
+</html>

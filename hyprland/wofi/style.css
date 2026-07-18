@@ -1,0 +1,69 @@
+/* wofi — Wulingyuan misty-peak theme (GTK CSS)
+ * rounded corners + app icons. Colors from the wulingyuan palette. */
+
+@define-color bg      #232b25;
+@define-color bg_alt  #2b352e;
+@define-color sel     #3a4740;
+@define-color fg      #bcccc5;
+@define-color dim     #85917d;
+@define-color accent  #8faa7d;
+@define-color warm    #bd6b50;
+@define-color blue    #8ba6b8;
+
+* {
+  font-family: "sans-serif";   /* swap for your Nerd Font if you like */
+  font-size: 14px;
+}
+
+/* transparent so the rounded outer-box corners actually show */
+window {
+  background: transparent;
+}
+
+#outer-box {
+  background-color: alpha(@bg, 0.90);   /* slightly transparent */
+  border: 2px solid @accent;   /* misty-green accent outline */
+  border-radius: 16px;
+  padding: 12px;
+}
+
+#input {
+  background-color: @bg_alt;
+  color: @fg;
+  border: 2px solid transparent;   /* reserves space so focus doesn't shift layout */
+  border-radius: 10px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
+}
+
+/* the outline that appears while typing — themed blue, not Adwaita's */
+#input:focus,
+#input:focus-within {
+  border-color: @warm;
+  outline: none;
+  box-shadow: none;
+}
+#input image { color: @dim; }
+
+#scroll { margin: 0; }
+
+#entry {
+  padding: 8px 10px;
+  border-radius: 10px;
+}
+#entry:selected {
+  background-color: @sel;
+}
+
+/* the icon — margin gives it breathing room from the label */
+#img {
+  margin-right: 12px;
+}
+
+#text {
+  color: @fg;
+}
+#text:selected,
+#entry:selected #text {
+  color: @accent;
+}

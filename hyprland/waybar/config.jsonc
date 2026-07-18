@@ -1,0 +1,88 @@
+{
+  // Waybar — Wulingyuan. Layout mimics Harsh-bin/waybar-config.
+  // Custom todo/countdown/power-menu scripts from that repo are omitted
+  // (they need external deps); swapped for standard working modules.
+  "layer": "top",
+  "position": "top",
+  "height": 34,
+  "spacing": 0,
+
+  "modules-left": [
+    "custom/launcher",
+    "custom/chrome", "custom/terminal", "custom/code", "custom/music", "custom/thunar"
+  ],
+  "modules-center": ["wlr/taskbar"],
+  "modules-right": [
+    "keyboard-state", "pulseaudio", "backlight", "network", "battery", "tray", "clock", "custom/power"
+  ],
+
+  "custom/launcher": {
+    "format": "",
+    "on-click": "wofi --show drun",
+    "tooltip": false
+  },
+
+  // --- app launcher strip: edit commands to match your installed apps ---
+  "custom/chrome":   { "format": "", "on-click": "firefox",          "tooltip-format": "Browser" },
+  "custom/terminal": { "format": "", "on-click": "ghostty",          "tooltip-format": "Terminal" },
+  "custom/code":     { "format": "", "on-click": "code",             "tooltip-format": "Editor" },
+  "custom/music":    { "format": "", "on-click": "spotify",          "tooltip-format": "Music" },
+  "custom/thunar":   { "format": "", "on-click": "thunar",           "tooltip-format": "Files" },
+
+  "wlr/taskbar": {
+    "format": "{icon}",
+    "icon-size": 20,
+    "icon-theme": "Adwaita",
+    "tooltip-format": "{title}",
+    "on-click": "activate",
+    "on-click-middle": "close"
+  },
+
+  "keyboard-state": {
+    "capslock": true,
+    "format": "{icon} {name}",
+    "format-icons": { "locked": "", "unlocked": "" }
+  },
+
+  "pulseaudio": {
+    "format": "{icon} {volume}% ▾",
+    "format-muted": " muted ▾",
+    "format-icons": { "default": ["", "", ""] },
+    "on-click": "$HOME/.config/waybar/scripts/scnp.lua popup",
+    "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+  },
+
+  "backlight": {
+    "format": "{icon} {percent}%",
+    "format-icons": ["", "", ""],
+    "on-scroll-up": "brightnessctl set 5%+",
+    "on-scroll-down": "brightnessctl set 5%-"
+  },
+
+  "network": {
+    "format-wifi": " {signalStrength}%",
+    "format-ethernet": "",
+    "format-disconnected": "",
+    "tooltip-format": "{ifname}: {ipaddr}"
+  },
+
+  "battery": {
+    "states": { "warning": 30, "critical": 15 },
+    "format": "{icon} {capacity}%",
+    "format-charging": " {capacity}%",
+    "format-icons": ["", "", "", "", ""]
+  },
+
+  "clock": {
+    "format": "{:%I:%M %p}",
+    "tooltip-format": "<tt>{calendar}</tt>"
+  },
+
+  "tray": { "icon-size": 16, "spacing": 8 },
+
+  "custom/power": {
+    "format": "",
+    "on-click": "wlogout",
+    "tooltip": false
+  }
+}

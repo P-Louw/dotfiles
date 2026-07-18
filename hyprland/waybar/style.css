@@ -1,0 +1,133 @@
+/* Waybar — Wulingyuan
+ * Layout & structure mimic github.com/Harsh-bin/waybar-config (style_11),
+ * recoloured to the misty-peak palette.
+ *   warm accent (orange) -> terracotta @red   (hover / attention)
+ *   light highlight       -> green @green      (active / clock)
+ */
+@import "colors.css";
+
+* {
+  border: none;
+  border-radius: 0;
+  /* JetBrainsMono Nerd Font bundles text + all icon sets (incl. Font
+     Awesome at its native codepoints), so no solid-weight trick needed. */
+  font-family: "JetBrainsMono Nerd Font", "Font Awesome 6 Free", sans-serif;
+  font-size: 12px;
+  min-height: 0;
+}
+
+window#waybar {
+  background: alpha(@base00, 0.85);   /* slight transparency; Hyprland blurs behind it */
+  color: @base05;
+}
+
+tooltip {
+  border-radius: 12px;
+  background-color: @base01;
+  border: 1px solid @yellow;
+}
+
+/* --- base module style: rounded pills --------------------------- */
+#custom-countdown, #custom-todo, #backlight, #pulseaudio, #network,
+#battery, #tray, #keyboard-state, #custom-power, #custom-launcher, #clock {
+  background: @base02;
+  padding: 3px 13px;
+  margin: 4px;
+  border-radius: 6px;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+
+/* --- app launcher strip: connected, rounded ends ---------------- */
+#custom-chrome, #custom-terminal, #custom-code, #custom-music, #custom-thunar {
+  background: @base02;
+  padding: 3px 13px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+  margin-right: 2px;
+  border-radius: 0;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+#custom-chrome { margin-left: 4px; border-radius: 6px 0 0 6px; }
+#custom-thunar { margin-right: 4px; border-radius: 0 6px 6px 0; }
+
+/* --- hover: pill "bubbles" get a cyan outline ------------------- */
+#custom-launcher:hover, #backlight:hover, #pulseaudio:hover, #network:hover,
+#battery:hover, #clock:hover, #tray:hover, #custom-power:hover {
+  box-shadow: inset 0 0 0 2px @cyan;
+}
+
+/* --- hover: launcher-strip buttons fill (terracotta) ------------ */
+#custom-chrome:hover, #custom-terminal:hover, #custom-code:hover,
+#custom-music:hover, #custom-thunar:hover {
+  background: @red;
+  color: @base00;
+}
+
+/* --- highlighted / stateful modules ----------------------------- */
+#clock {
+  background: @green;
+  color: @base00;
+  font-weight: bold;
+}
+#pulseaudio.muted   { background: @yellow; color: @base00; }
+#battery.charging   { background: @green;  color: @base00; }
+#battery.critical   { background: @red;    color: @base00; }
+
+/* --- accent glyphs ---------------------------------------------- */
+#custom-launcher { color: @green; font-size: 16px; }
+#custom-power    { color: @red; }
+
+/* --- keyboard-state (caps lock indicator) ----------------------- */
+#keyboard-state { background: transparent; }
+#keyboard-state label.locked {
+  background: @red;
+  color: @base00;
+  padding: 0 12px;
+  margin: 4px 0;
+  border-radius: 6px;
+}
+
+/* --- Soundcraft (scnp) audio drawer ----------------------------- */
+.scnp {
+  background: @base02;
+  padding: 3px 10px;
+  margin: 4px 2px;
+  border-radius: 6px;
+  color: @base05;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+}
+.scnp:hover { box-shadow: inset 0 0 0 2px @cyan; }
+
+#custom-scnp-mic.active,
+#custom-scnp-line56.active,
+#custom-scnp-line78.active,
+#custom-scnp-master.active {
+  background: @green;
+  color: @base00;
+}
+#custom-scnp-ducker.active {
+  background: @red;
+  color: @base00;
+}
+#custom-scnp-note {
+  background: transparent;
+  color: @base04;
+  font-size: 11px;
+}
+#custom-scnp-note:hover { box-shadow: none; }
+
+/* --- taskbar (center) with underline indicator ------------------ */
+#taskbar {
+  background: @base02;
+  padding: 0 5px;
+  margin: 4px;
+  border-radius: 6px;
+}
+#taskbar button {
+  background: transparent;
+  padding: 0 8px;
+  border-bottom: 3px solid transparent;
+  transition: border-bottom-color 0.3s ease-out;
+}
+#taskbar button:hover   { border-bottom-color: @red; }
+#taskbar button.active  { border-bottom-color: @green; }

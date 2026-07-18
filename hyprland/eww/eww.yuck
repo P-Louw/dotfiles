@@ -1,0 +1,42 @@
+;; Wulingyuan — Soundcraft Notepad-12FX audio bubble (eww 0.6.0)
+;; Opened on-click from the waybar volume tile (eww open --toggle audio-bubble).
+;; Clickables use `eventbox` (NOT `button`): eww fires a button's onclick on
+;; open, which would change routing just by opening the bubble.
+;; Logic lives in ~/.config/waybar/scripts/scnp.lua.
+
+(defpoll active_src :interval "500ms" :initial "-1"  "cat ~/.cache/scnp-source 2>/dev/null || echo -1")
+(defpoll ducker_on  :interval "500ms" :initial "off" "cat ~/.cache/scnp-ducker 2>/dev/null || echo off")
+(defpoll duck_range :interval "500ms" :initial "20"  "cat ~/.cache/scnp-range  2>/dev/null || echo 20")
+
+(defwidget src-tile [idx name]
+  (eventbox :class {active_src == idx ? "tile active" : "tile"}
+            :cursor "pointer"
+            :onclick "~/.config/waybar/scripts/scnp.lua set ${idx} && eww update active_src=${idx}"
+    (box :hexpand true (label :text name))))
+
+(defwidget audio []
+  (box :class "bubble" :orientation "v" :space-evenly false :spacing 10
+    (label :class "title" :halign "start" :text "NOTEPAD-12FX · capture 3+4")
+    (box :orientation "v" :space-evenly false :spacing 6
+      (box :orientation "h" :space-evenly true :spacing 6
+        (src-tile :idx "0" :name "MIC 3+4")
+        (src-tile :idx "1" :name "LINE 5+6"))
+      (box :orientation "h" :space-evenly true :spacing 6
+        (src-tile :idx "2" :name "LINE 7+8")
+        (src-tile :idx "3" :name "MASTER L+R")))
+    (label :class "note" :halign "start" :text "capture 1+2 always on")
+    (box :class "duckrow" :orientation "h" :space-evenly false :spacing 8
+      (eventbox :class {ducker_on == "on" ? "duck active" : "duck"}
+                :cursor "pointer"
+                :onclick "~/.config/waybar/scripts/scnp.lua ducker-toggle"
+        (box :halign "center" (label :text "Ducker")))
+      (scale :class "range" :hexpand true :value {duck_range} :min 0 :max 90 :round-digits 0
+             :onchange "~/.config/waybar/scripts/scnp.lua duck-set {}"))
+    (label :class "rangelbl" :halign "end" :text "duck range ${duck_range} dB")))
+
+(defwindow audio-bubble
+  :monitor 0
+  :stacking "overlay"
+  :focusable false
+  :geometry (geometry :x "10px" :y "4px" :anchor "top right" :width "270px")
+  (audio))

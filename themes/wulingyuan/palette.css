@@ -1,0 +1,56 @@
+/* ============================================================
+   Wulingyuan — misty-peak rice palette
+   Muted greens sampled from Zhangjiajie + Yangshuo photos.
+   Soft-dark / Everforest-soft family. base16-compatible.
+
+   Format per color:  --var: #hex;  /* H_ S_% V_% — source */
+   ============================================================ */
+
+:root {
+  /* --- base ramp: background → foreground -------------------- */
+  --base00: #232b25; /* H135 S19% V17% — misty dark, main background   */
+  --base01: #2b352e; /* H138 S18% V21% — panel / inactive bg           */
+  --base02: #3a4740; /* H150 S20% V28% — selection / forest shadow     */
+  --base03: #5f7167; /* H146 S16% V44% — comments / muted teal-grey    */
+  --base04: #85917d; /* H90  S13% V57% — dim foreground / sage khaki   */
+  --base05: #bcccc5; /* H154 S 8% V80% — default foreground, misty green*/
+  --base06: #d6ded8; /* H150 S 6% V87% — bright foreground / pale fog  */
+  --base07: #eef0e9; /* H80  S 3% V94% — brightest / luminous haze     */
+
+  /* --- accents: every one sampled from a real photo element -- */
+  --red:    #bd6b50; /* H15  S58% V74% — prayer ribbon, muted          */
+  --orange: #cd8b5c; /* H25  S55% V80% — ribbon / lit rock highlight   */
+  --yellow: #b3b06a; /* H57  S41% V70% — moss, olive lifted            */
+  --green:  #8faa7d; /* H96  S26% V67% — the hero, mid sage green      */
+  --cyan:   #7ea896; /* H154 S25% V66% — river water                   */
+  --blue:   #8ba6b8; /* H204 S24% V72% — atmospheric haze              */
+  --purple: #a292ac; /* H278 S14% V67% — distant-ridge mauve           */
+  --brown:  #977c5d; /* H35  S38% V59% — sandstone / boat wood         */
+
+  /* --- semantic aliases (map meaning → color) --------------- */
+  --bg:            var(--base00);
+  --bg-alt:        var(--base01);
+  --bg-selection:  var(--base02);
+  --fg:            var(--base05);
+  --fg-dim:        var(--base04);
+  --fg-bright:     var(--base06);
+  --comment:       var(--base03);
+
+  --accent:        var(--green);  /* primary UI accent            */
+  --accent-warm:   var(--red);    /* warm pop / active highlight  */
+
+  --error:         var(--red);
+  --warning:       var(--orange);
+  --success:       var(--green);
+  --info:          var(--blue);
+
+  /* --- base16 aliases (for base16 templaters) --------------- */
+  --base08: var(--red);
+  --base09: var(--orange);
+  --base0A: var(--yellow);
+  --base0B: var(--green);
+  --base0C: var(--cyan);
+  --base0D: var(--blue);
+  --base0E: var(--purple);
+  --base0F: var(--brown);
+}

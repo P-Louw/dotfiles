@@ -1,0 +1,35 @@
+/* Wulingyuan — misty-peak palette for Waybar (GTK CSS).
+ * GTK CSS uses @define-color, NOT web var(). Reference as @name.
+ * Wire it up: put  @import "colors.css";  at the TOP of style.css,
+ * then use e.g.  background: @bg;  color: @fg;  in your rules.
+ */
+
+/* base ramp */
+@define-color base00 #232b25; /* misty dark background */
+@define-color base01 #2b352e; /* panel / module bg     */
+@define-color base02 #3a4740; /* borders / selection    */
+@define-color base03 #5f7167; /* muted / disabled       */
+@define-color base04 #85917d; /* dim text               */
+@define-color base05 #bcccc5; /* default text           */
+@define-color base06 #d6ded8; /* bright text            */
+@define-color base07 #eef0e9; /* brightest / fog white  */
+
+/* accents */
+@define-color red    #bd6b50;
+@define-color orange #cd8b5c;
+@define-color yellow #b3b06a;
+@define-color green  #8faa7d;
+@define-color cyan   #7ea896;
+@define-color blue   #8ba6b8;
+@define-color purple #a292ac;
+@define-color brown  #977c5d;
+
+/* semantic aliases */
+@define-color bg        @base00;
+@define-color bg-alt    @base01;
+@define-color fg        @base05;
+@define-color fg-dim    @base04;
+@define-color accent    @green;
+@define-color warn      @orange;
+@define-color critical  @red;
+@define-color good      @green;

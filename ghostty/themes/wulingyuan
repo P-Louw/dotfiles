@@ -1,0 +1,28 @@
+background = #232b25
+foreground = #bcccc5
+
+cursor-color = #8faa7d
+cursor-text  = #232b25
+
+selection-background = #3a4740
+selection-foreground = #d6ded8
+
+# normal
+palette = 0=#232b25
+palette = 1=#bd6b50
+palette = 2=#8faa7d
+palette = 3=#b3b06a
+palette = 4=#8ba6b8
+palette = 5=#a292ac
+palette = 6=#7ea896
+palette = 7=#bcccc5
+
+# bright (base16 reuses the accents; 8 = muted grey, 15 = fog white)
+palette = 8=#5f7167
+palette = 9=#bd6b50
+palette = 10=#8faa7d
+palette = 11=#b3b06a
+palette = 12=#8ba6b8
+palette = 13=#a292ac
+palette = 14=#7ea896
+palette = 15=#eef0e9
