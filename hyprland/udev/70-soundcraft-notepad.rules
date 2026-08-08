@@ -1,0 +1,8 @@
+# Soundcraft Notepad series mixers with audio routing controlled by USB.
+# uaccess grants the active-seat user access, BUT at boot the device is often
+# enumerated before logind reconciles seat ACLs, so the ACL never lands and
+# access breaks until a manual `udevadm trigger`. GROUP="audio"/MODE=0660 is a
+# timing-independent fallback so members of the audio group always have access.
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="05fc", ATTRS{idProduct}=="0030", TAG+="uaccess", GROUP="audio", MODE="0660"
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="05fc", ATTRS{idProduct}=="0031", TAG+="uaccess", GROUP="audio", MODE="0660"
+ACTION=="add", SUBSYSTEM=="usb", ATTRS{idVendor}=="05fc", ATTRS{idProduct}=="0032", TAG+="uaccess", GROUP="audio", MODE="0660"
