@@ -17,6 +17,7 @@ layout. Nothing here is auto-installed — copy or symlink each folder yourself.
 | `ghostty/` | `~/.config/ghostty/`          | Terminal color theme                          |
 | `dunst/`   | `~/.config/dunst/`            | Notification daemon config                    |
 | `eww/`     | `~/.config/eww/`             | Soundcraft audio widget (`eww.yuck` + `eww.scss`) |
+| `udev/`    | `/etc/udev/rules.d/`           | udev rule so `scnp-cli` reaches the mixer over USB (see [Soundcraft udev rule](#soundcraft-udev-rule)) |
 | `themes/`  | —                              | Palette reference + the design artifact       |
 
 ## Deploy
@@ -41,6 +42,30 @@ Two things need a manual touch:
   `config`.
 
 After deploying, reload the bar with `killall -SIGUSR2 waybar` (or restart it).
+
+## Soundcraft udev rule
+
+The waybar audio tile and eww widget drive a Soundcraft Notepad-12FX through
+`scnp-cli`, which talks to the mixer over raw USB. That needs write access to the
+device node, and the usual `uaccess` mechanism is unreliable at boot: the mixer is
+often enumerated before logind reconciles the seat ACLs, so the ACL never lands and
+`scnp-cli` gets permission-denied until a manual `udevadm trigger`.
+
+`udev/70-soundcraft-notepad.rules` fixes it. It keeps `TAG+="uaccess"` but also sets
+`GROUP="audio"` / `MODE="0660"` as a timing-independent fallback, so any member of the
+`audio` group has access regardless of the boot race. It covers the Notepad series USB
+IDs (`05fc:0030`, `05fc:0031`, `05fc:0032`).
+
+Unlike the other folders this installs system-wide, not under `~/.config/`:
+
+```sh
+sudo cp ~/Documents/dotfiles/hyprland/udev/70-soundcraft-notepad.rules /etc/udev/rules.d/
+sudo gpasswd -a "$USER" audio          # add yourself to the audio group (log out/in after)
+sudo udevadm control --reload-rules && sudo udevadm trigger  # apply without a reboot
+```
+
+Verify with `ls -l /dev/bus/usb/*/*` for the mixer — the node should read
+`crw-rw---- root audio`.
 
 ## Wulingyuan palette
 
@@ -83,7 +108,8 @@ browser — click any swatch to copy). Machine-readable sources:
   audio-routing helper, included here at `waybar/scripts/scnp.lua`. It is a `luajit`
   script that shells out to `scnp-cli` (from [socradoc](https://github.com/ndim/socradoc));
   install both, and keep the script executable, or the audio bubble and volume-click will
-  do nothing (the rest of the bar is unaffected).
+  do nothing (the rest of the bar is unaffected). `scnp-cli` also needs USB access to the
+  mixer — see [Soundcraft udev rule](#soundcraft-udev-rule) below.
 - **Runtime dependencies** (install these; they are referenced by the configs, not
   shipped here): `waybar`, `wofi`, `ghostty`, `dunst`, `eww`, `wlogout` (power menu),
   `brightnessctl`, `pactl` (pulseaudio/pipewire), `luajit` + `scnp-cli` (for the audio
