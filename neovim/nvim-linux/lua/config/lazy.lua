@@ -29,7 +29,7 @@ require("lazy").setup({
     { import = "plugins.lsp" },
   },
   -- colorscheme that will be used when installing plugins.
-  install = { colorscheme = { "rose-pine" } },
+  install = { colorscheme = { "wulingyuan" } },
   -- automatically check for plugin updates
   checker = { enabled = true },
 })

@@ -18,7 +18,7 @@ layout. Nothing here is auto-installed — copy or symlink each folder yourself.
 | `dunst/`   | `~/.config/dunst/`            | Notification daemon config                    |
 | `eww/`     | `~/.config/eww/`             | Soundcraft audio widget (`eww.yuck` + `eww.scss`) |
 | `udev/`    | `/etc/udev/rules.d/`           | udev rule so `scnp-cli` reaches the mixer over USB (see [Soundcraft udev rule](#soundcraft-udev-rule)) |
-| `themes/`  | —                              | Palette reference + the design artifact       |
+| `themes/`  | —                              | Palette reference + the design artifact (the matching Neovim theme lives in its own repo — [P-Louw/wulingyuan-nvim](https://github.com/P-Louw/wulingyuan-nvim)) |
 
 ## Deploy
 
