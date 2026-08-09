@@ -233,6 +233,14 @@ return {
         },
       },
       input = { enabled = true },
+      lazygit = {
+        -- LazyGit paints its dim [N] markers in terminal color 241; snacks maps
+        -- that to `Special` (cyan-green here), which is barely visible. Remap it
+        -- to the theme's bright white (LazygitDimBright, defined in colors.lua).
+        theme = {
+          [241] = { fg = "LazygitDimBright" },
+        },
+      },
       notifier = {
         enabled = true,
         timeout = 3000,

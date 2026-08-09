@@ -46,5 +46,5 @@
   "trouble.nvim": { "branch": "main", "commit": "bd67efe408d4816e25e8491cc5ad4088e708a69a" },
   "ts-comments.nvim": { "branch": "main", "commit": "a59d6092213447450191122c9346f309161504cb" },
   "which-key.nvim": { "branch": "main", "commit": "3aab2147e74890957785941f0c1ad87d0a44c15a" },
-  "wulingyuan": { "branch": "main", "commit": "b7bffb763e63bf3bde3236389039486642ecf59d" }
+  "wulingyuan": { "branch": "main", "commit": "8849ab19e0407066e981ddebdd1b597fda912a30" }
 }
