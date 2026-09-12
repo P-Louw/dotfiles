@@ -66,7 +66,8 @@ return {
     require("telescope").setup({
       defaults = {
         prompt_prefix = " ",
-        selection_caret = " ",
+        selection_caret = "▌",
+        entry_prefix = " ",
         -- Configure for better integration
         mappings = {
           i = {
